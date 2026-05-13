@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { PROJECTS } from "../utils/data";
-import { statusMeta, type Page } from "../utils/Shared";
+import { statusMeta } from "../utils/Shared";
 import { useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 // ─── DASHBOARD ────────────────────────────────────────────────
 export function Dashboard() {
@@ -15,12 +15,6 @@ export function Dashboard() {
     { icon:"🌐",label:"Web Projects Live",value:"9",delta:"3 deploying",c:"#0ea5e9" }
   ];
    const { scrollYProgress } = useScroll();
-
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [1, 1.15]
-  );
   return (
   <div
     style={{
@@ -354,7 +348,7 @@ export function Dashboard() {
             </motion.button>
           </div>
 
-          {PROJECTS.map((p, i) => {
+          {PROJECTS.map((p, _) => {
             const sm = statusMeta(p.status);
 
             return (
