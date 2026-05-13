@@ -105,6 +105,7 @@ export function Articles() {
               <Link
                 to={`/articles/${a.id}`}
                 className="article-card"
+                style={{textDecoration: "none"}}
               >
                 <div
                   className="article-thumb"
@@ -113,7 +114,7 @@ export function Articles() {
                   }}
                 />
 
-                <div className="article-body">
+                <div className="article-body" style={{textDecoration: "none"}}>
 
                   <span
                     className="pill"
