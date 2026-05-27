@@ -43,7 +43,7 @@ export function Footer() {
           ))}
         </div>
         <div style={{ borderTop:"1px solid rgba(255,255,255,.05)",paddingTop:"1.75rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1rem" }}>
-          <span style={{ fontFamily:"var(--fb)",fontSize:12.5,color:"var(--t3)" }}>© 2026 YobbyTech Solutions. Built in Nakuru, Kenya 🇰🇪</span>
+          <span style={{ fontFamily:"var(--fb)",fontSize:12.5,color:"var(--t3)" }}>© 2026 Yobby Technologies Solutions. Built in Nakuru, Kenya 🇰🇪</span>
           <div style={{ display:"flex",gap:"1.5rem",alignItems:"center" }}>
             <div style={{ display:"flex",alignItems:"center",gap:6 }}>
               <div className="sdot" style={{ color:"#00e5b4",background:"#00e5b4" }} />
