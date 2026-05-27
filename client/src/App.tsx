@@ -10,7 +10,8 @@ import { Products } from "./pages/Products";
 import  About  from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { ArticleView } from './pages/ArticlesView';
-
+import ScrollToTop from './components/ScrollToTopButton';
+import ScrollToTops from './components/ScrollToTop';
 
 // ─── APP ROOT ─────────────────────────────────────────────────
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
       <div className="noise" />
 
       <Nav />
-
+      <ScrollToTops/>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -44,7 +45,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
-
+      <ScrollToTop/>
       <Footer />
     </div>
   </BrowserRouter>

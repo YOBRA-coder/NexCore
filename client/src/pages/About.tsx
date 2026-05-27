@@ -35,7 +35,7 @@ export default function About() {
           className="heroAbout"
         >
           <motion.div variants={fadeUp} className="chip">
-            About NexCore
+            About YobbyTech
           </motion.div>
 
           <motion.h1 variants={fadeUp} custom={1}>
@@ -44,7 +44,7 @@ export default function About() {
           </motion.h1>
 
           <motion.p variants={fadeUp} custom={2}>
-            NexCore is a full-service technology studio based in
+            YobbyTech is a full-service technology studio based in
             Nakuru, Kenya. We build web applications, AI systems,
             trading platforms, Android apps, and cloud infrastructure
             for clients across Africa and globally.
@@ -236,6 +236,8 @@ export default function About() {
           </button>
         </motion.section>
       </div>
+   
     </div>
+    
   );
 }

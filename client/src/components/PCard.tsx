@@ -71,7 +71,7 @@ export function PCard({
 
       {/* CONTENT */}
       <div className="product-content">
-        <div className="product-category" style={{ color:project.accent }}>
+        <div className="product-category" style={{ color: project.accent  }}>
           {project.category}
         </div>
 

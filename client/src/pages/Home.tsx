@@ -102,7 +102,7 @@ export function Home() {
             </h1>
 
             <p className="hero-desc">
-              NexCore builds AI systems,
+              Yobby Technologies builds AI systems,
               trading infrastructure,
               cloud platforms, mobile apps,
               and scalable digital products
@@ -137,8 +137,8 @@ export function Home() {
                 ))}
                 {/* hub */}
                 <div style={{ position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:96,height:96,borderRadius:"50%",background:"linear-gradient(135deg,rgba(124,58,237,.2),rgba(168,85,247,.12))",border:"1.5px solid rgba(139,92,246,.3)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:5,boxShadow:"0 0 50px rgba(124,58,237,.2)" }}>
-                  <span style={{ fontFamily:"var(--fd)",fontSize:13,fontWeight:700,color:"#a855f7" }}>Nex</span>
-                  <span style={{ fontFamily:"var(--fd)",fontSize:13,fontWeight:700,color:"#00e5b4" }}>Core</span>
+                  <span style={{ fontFamily:"var(--fd)",fontSize:13,fontWeight:700,color:"#a855f7" }}>Yobby</span>
+                  <span style={{ fontFamily:"var(--fd)",fontSize:13,fontWeight:700,color:"#00e5b4" }}>Technologies</span>
                 </div>
                 {/* orbit icons */}
                 {cats.map((cat,i) => {
@@ -260,7 +260,7 @@ export function Home() {
           </div>
           <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1.25rem" }} className="g3">
             {[
-              { q:"NexCore delivered our trading bot in 3 weeks. Runs live with real money and hasn't missed a beat.", a:"Alex M.", r:"Forex Trader, Nairobi", c:"#00e5b4" },
+              { q:"YobbyTech delivered our trading bot in 3 weeks. Runs live with real money and hasn't missed a beat.", a:"Alex M.", r:"Forex Trader, Nairobi", c:"#00e5b4" },
               { q:"The Android app they built saved our logistics team 4 hours of manual work every single day.", a:"Sarah K.", r:"Founder, QuickDeliver", c:"#a855f7" },
               { q:"Brand identity + website package was exactly what we needed to pitch investors. Closed our seed round.", a:"James O.", r:"CEO, FinEdge Capital", c:"#f5a623" }
             ].map((t,i) => (

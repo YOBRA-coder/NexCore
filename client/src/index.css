@@ -7,6 +7,14 @@
 
 /* PROGRESS */
 
+.dot { 
+  width: 6px; height: 6px; 
+  background: var(--accent); 
+  border-radius: 50%; 
+  margin-left: 3px;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .progress{
   position:fixed;
   top:0;
@@ -129,6 +137,51 @@
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+.scroll-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); /* Kioo */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.7);
+  z-index: 1000;
+}
+
+.scroll-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px) scale(1.1); /* Inanyanyuka kidogo */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.scroll-btn:hover .arrow {
+  transform: translateY(-3px); /* Mshale unacheza unapo-hover */
 }
 
 .hero-desc{

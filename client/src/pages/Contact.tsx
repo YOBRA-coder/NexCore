@@ -43,16 +43,16 @@ export function Contact() {
 
   return (
     <section className="contact-wrap">
-    <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
       <div className="bg-orb orb1" />
       <div className="bg-orb orb2" />
-
+      <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         className="contact-grid"
       >
+       
         {/* LEFT */}
         <div>
           <div className="chip">

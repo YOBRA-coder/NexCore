@@ -115,7 +115,7 @@ export function Dashboard() {
               marginBottom: 10,
             }}
           >
-            NexCore Command Center
+            YobbyTech Command Center
           </motion.h1>
 
           <motion.p
@@ -131,7 +131,7 @@ export function Dashboard() {
             }}
           >
             Unified monitoring, analytics, infrastructure health,
-            and operational intelligence across the NexCore ecosystem.
+            and operational intelligence across the YobbyTech ecosystem.
           </motion.p>
         </div>
 

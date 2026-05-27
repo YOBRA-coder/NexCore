@@ -135,7 +135,7 @@ export function Homes() {
             </h1>
 
             <p className="hero-desc">
-              NexCore builds AI systems,
+              YobbyTech builds AI systems,
               trading infrastructure,
               cloud platforms, mobile apps,
               and scalable digital products
@@ -222,7 +222,7 @@ export function Homes() {
               <div className="dashboard">
                 <div className="dash-top">
                   <div>
-                    <h4>NexCore Analytics</h4>
+                    <h4>Yobby Technologies Analytics</h4>
                     <p>
                       Real-time infrastructure
                     </p>
