@@ -17,7 +17,7 @@ export function Nav() {
             <div style={{ width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#7c3aed,#a855f7)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fd)",fontWeight:700,fontSize:17,color:"#fff",boxShadow:"0 0 18px rgba(124,58,237,.5)" }}>
               <img width={36} height={36} src="logo.png"/>
             </div>
-            <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:19,color:"#fff" }}>Yobby <span><div className="dot"></div></span></span>
+            <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:19,color:"#fff" }}>YobbyTech<span><div className="dot"></div></span></span>
           </div>
           <div className="hm" style={{ display:"flex",gap:2 }}>
               {links.map(([l,p]) => (

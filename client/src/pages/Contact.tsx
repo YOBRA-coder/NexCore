@@ -72,6 +72,8 @@ export function Contact() {
 
           <div className="features">
             {[
+              "📧 hello@yobbytech.com",
+              "📱 +254 726 553 481",
               "⚡ Fast Response",
               "🔒 NDA Friendly",
               "🌍 Remote Worldwide",
