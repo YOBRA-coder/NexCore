@@ -15,9 +15,9 @@ export function Nav() {
         <div style={{ maxWidth:1320,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:68 }}>
           <div onClick={() => { navigate("/"); setMob(false); }} style={{ cursor:"pointer",display:"flex",alignItems:"center",gap:11,userSelect:"none" }}>
             <div style={{ width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#7c3aed,#a855f7)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fd)",fontWeight:700,fontSize:17,color:"#fff",boxShadow:"0 0 18px rgba(124,58,237,.5)" }}>
-              <img width={36} height={36} src="logo.png"/>
+              <img width={36} height={36} src="yobby.png"/>
             </div>
-            <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:19,color:"#fff" }}>YobbyTech<span><div className="dot"></div></span></span>
+            <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:19,color:"#fff" }}>Yobby<span><div className="dot"></div></span></span>
           </div>
           <div className="hm" style={{ display:"flex",gap:2 }}>
               {links.map(([l,p]) => (

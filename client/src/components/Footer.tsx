@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 // ─── FOOTER ───────────────────────────────────────────────────
 export function Footer() {
     const navigate = useNavigate();
+    const date = new Date().getFullYear();
   return (
     <footer style={{ background:"#020309",borderTop:"1px solid rgba(139,92,246,.08)",padding:"4rem 1.5rem 2.5rem" }}>
       <div style={{ maxWidth:1320,margin:"0 auto" }}>
@@ -10,7 +11,7 @@ export function Footer() {
           <div>
             <div style={{ display:"flex",alignItems:"center",gap:11,marginBottom:"1.25rem" }}>
               <div style={{ width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#7c3aed,#a855f7)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fd)",fontWeight:700,fontSize:16,color:"#fff" }}>
-                <img height={36} width={36} src="logo.png"/>
+                <img height={36} width={36} src="yobby.png"/>
               </div>
               <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:18,color:"#fff" }}>Yobby Technologies</span>
             </div>
@@ -43,7 +44,7 @@ export function Footer() {
           ))}
         </div>
         <div style={{ borderTop:"1px solid rgba(255,255,255,.05)",paddingTop:"1.75rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1rem" }}>
-          <span style={{ fontFamily:"var(--fb)",fontSize:12.5,color:"var(--t3)" }}>© 2026 Yobby Technologies Solutions. Built in Nakuru, Kenya 🇰🇪</span>
+          <span style={{ fontFamily:"var(--fb)",fontSize:12.5,color:"var(--t3)" }}>© {date} Yobby Technologies Solutions. Built in Nakuru, Kenya 🇰🇪</span>
           <div style={{ display:"flex",gap:"1.5rem",alignItems:"center" }}>
             <div style={{ display:"flex",alignItems:"center",gap:6 }}>
               <div className="sdot" style={{ color:"#00e5b4",background:"#00e5b4" }} />
