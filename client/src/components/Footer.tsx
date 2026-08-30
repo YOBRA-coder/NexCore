@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <div style={{ display:"flex",alignItems:"center",gap:11,marginBottom:"1.25rem" }}>
               <div className="brand-logo-mark">
-                <img src="yobby.png" alt="Yobby Technologies logo" />
+                <img src="/yobby.png" alt="Yobby Technologies logo" />
               </div>
               <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:18,color:"var(--t)" }}>Yobby Technologies</span>
             </div>

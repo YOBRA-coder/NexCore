@@ -16,7 +16,7 @@ export function Nav() {
         <div style={{ maxWidth:1320,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:68 }}>
           <div onClick={() => { navigate("/"); setMob(false); }} style={{ cursor:"pointer",display:"flex",alignItems:"center",gap:11,userSelect:"none" }}>
             <div className="brand-logo-mark brand-logo-mark-nav">
-              <img src="yobby.png" alt="Yobby Technologies logo"/>
+              <img src="/yobby.png" alt="Yobby Technologies logo"/>
             </div>
             <span style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:19,color:"var(--t)" }}>Yobby<span><div className="dot"></div></span></span>
           </div>
