@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVICES } from "../utils/data";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
+import { uploadFileToCloud } from "../utils/fileUpload";
 
 export function Contact() {
   const location = useLocation() as { state?: { service?: string; projectName?: string; message?: string } };
@@ -14,39 +15,51 @@ export function Contact() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const submit = async (e: any) => {
-    e.preventDefault();
+const submit = async (e: any) => {
+  e.preventDefault();
+  setLoading(true);
 
-    setLoading(true);
+  const formElement = e.target;
+  const formData = new FormData(formElement);
 
-    const formData = new FormData(e.target);
+  // 1. Grab the raw file from the form state
+  const rawFile = formData.get("attachment") as File;
 
-    formData.append(
-      "access_key",
-      "b488cb22-e436-419f-8e87-4192024a5c0c"
-    );
-
-    try {
-      const res = await fetch(
-        "https://api.web3forms.com/submit",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await res.json();
-
-      if (data.success) {
-        setSent(true);
-        e.target.reset();
-      }
-    } catch (err) {
-      console.error(err);
+  if (rawFile && rawFile.size > 0) {
+    // 2. Fire the upload function to store it in the cloud
+    const cloudFileUrl = await uploadFileToCloud(rawFile);
+    
+    if (cloudFileUrl) {
+      // 3. Inject the link as text into Web3Forms payload
+      formData.append("Attachment Link", cloudFileUrl);
     }
+  }
 
-    setLoading(false);
-  };
+  // 4. CRITICAL: Clean out the binary block so Web3Forms free tier accepts the submit call
+  formData.delete("attachment");
+
+  // 5. Append Access Key and fire to Web3Forms
+  formData.append("access_key", "b488cb22-e436-419f-8e87-4192024a5c0c");
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setSent(true);
+      formElement.reset();
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  setLoading(false);
+};
+
   const { scrollYProgress } = useScroll();
 
   return (

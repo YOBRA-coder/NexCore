@@ -2,44 +2,62 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import type { Job } from "../utils/Shared";
+import { uploadFileToCloud } from "../utils/fileUpload";
 
 export function JobApplyForm({ job, onClose }: { job: Job; onClose?: () => void }) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const submit = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    setErrorMessage(null);
+const submit = async (e: any) => {
+  e.preventDefault();
+  setLoading(true);
+  setErrorMessage(null);
 
-    const formElement = e.target;
-    const formData = new FormData(formElement);
-    formData.append("access_key", "b488cb22-e436-419f-8e87-4192024a5c0c");
-    formData.append("subject", `Job Application — ${job.title}`);
+  const formElement = e.target;
+  const formData = new FormData(formElement);
 
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-      
-      const data = await res.json();
-      
-      if (data.success) {
-        setSent(true);
-        // Delay form resetting until after it unmounts to prevent Framer Motion crashes
-        setTimeout(() => formElement.reset(), 500);
-      } else {
-        setErrorMessage(data.message || "Something went wrong. Please try again.");
-      }
-    } catch (err) {
-      console.error(err);
-      setErrorMessage("Network error. Please check your connection.");
-    } finally {
-      setLoading(false);
+  // 1. Grab the raw resume file
+  const rawResumeFile = formData.get("resume") as File;
+
+  if (rawResumeFile && rawResumeFile.size > 0) {
+    // 2. Stream asset to Cloudinary
+    const cloudResumeUrl = await uploadFileToCloud(rawResumeFile);
+    
+    if (cloudResumeUrl) {
+      // 3. Document URL is saved as a safe text pointer inside your notification emails
+      formData.append("Resume Link", cloudResumeUrl);
     }
-  };
+  }
+
+  // 4. CRITICAL: Purge binary tracking fields before dispatching to Web3Forms API
+  formData.delete("resume");
+
+  formData.append("access_key", "b488cb22-e436-419f-8e87-4192024a5c0c");
+  formData.append("subject", `Job Application — ${job.title}`);
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+    
+    const data = await res.json();
+    
+    if (data.success) {
+      setSent(true);
+      setTimeout(() => formElement.reset(), 500);
+    } else {
+      setErrorMessage(data.message || "Something went wrong. Please try again.");
+    }
+  } catch (err) {
+    console.error(err);
+    setErrorMessage("Network error. Please check your connection.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <AnimatePresence mode="wait">
