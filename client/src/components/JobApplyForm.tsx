@@ -95,7 +95,7 @@ export function JobApplyForm({ job, onClose }: { job: Job; onClose?: () => void 
           
           <div className="upload">
             <label>Attach Resume / CV</label>
-            <input type="file" name="resume" accept=".pdf,.doc,.docx" required />
+            <input type="file" name="resume" accept=".pdf,.doc,.docx" />
             <small>PDF or Word document</small>
           </div>
 
