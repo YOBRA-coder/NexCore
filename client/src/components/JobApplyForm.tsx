@@ -13,7 +13,7 @@ export function JobApplyForm({ job, onClose }: { job: Job; onClose?: () => void 
 
     const formData = new FormData(e.target);
     formData.append("access_key", "b488cb22-e436-419f-8e87-4192024a5c0c");
-    formData.append("subject", `Job Application — ${job.title}`);
+    //formData.append("subject", `Job Application — ${job.title}`);
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
