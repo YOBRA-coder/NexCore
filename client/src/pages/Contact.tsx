@@ -23,7 +23,7 @@ export function Contact() {
 
     formData.append(
       "access_key",
-      "YOUR_WEB3FORMS_ACCESS_KEY"
+      "b488cb22-e436-419f-8e87-4192024a5c0c"
     );
 
     try {
