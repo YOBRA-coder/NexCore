@@ -45,7 +45,7 @@ return (
             fontFamily: "var(--fd)",
             fontWeight: 700,
             fontSize: "clamp(2.2rem,4.5vw,3.6rem)",
-            color: "#fff",
+            color: "var(--t)",
             letterSpacing: "-.03em"
           }}>
             What We <span className="gtext">Deliver</span>
@@ -106,7 +106,7 @@ return (
                   <h3 style={{
                     fontFamily: "var(--fd)",
                     fontWeight: 700,
-                    color: "#fff",
+                    color: "var(--t)",
                     fontSize: 19
                   }}>
                     {svc.title}
@@ -167,7 +167,14 @@ return (
               </div>
 
               <button
-                onClick={() => navigate("/contact")}
+                onClick={() =>
+                  navigate("/contact", {
+                    state: {
+                      service: svc.title,
+                      message: `Hi! I'm interested in ${svc.title} (${svc.subtitle}). Here's what I need:\n\n`,
+                    },
+                  })
+                }
                 style={{
                   background: svc.accent + "15",
                   border: `1px solid ${svc.accent}40`,
@@ -195,7 +202,7 @@ return (
           <h2 style={{
             fontFamily: "var(--fd)",
             fontSize: "2rem",
-            color: "#fff",
+            color: "var(--t)",
             textAlign: "center",
             marginBottom: "3rem"
           }}>
@@ -229,7 +236,7 @@ return (
                   {step}
                 </div>
                 <div style={{ fontSize: 28 }}>{icon}</div>
-                <h3 style={{ color: "#fff", marginTop: 10 }}>{title}</h3>
+                <h3 style={{ color: "var(--t)", marginTop: 10 }}>{title}</h3>
                 <p style={{ fontSize: 13, color: "var(--t3)" }}>{desc}</p>
               </motion.div>
             ))}

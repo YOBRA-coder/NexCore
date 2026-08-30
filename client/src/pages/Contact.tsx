@@ -1,8 +1,16 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { SERVICES } from "../utils/data";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 
 export function Contact() {
+  const location = useLocation() as { state?: { service?: string; projectName?: string; message?: string } };
+  const prefillService = location.state?.service || "";
+  const prefillMessage = location.state?.message || "";
+  const prefillNote = location.state?.projectName
+    ? `Referencing project: ${location.state.projectName}`
+    : "";
+
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -152,10 +160,17 @@ export function Contact() {
                   placeholder="Company (optional)"
                 />
 
+                {prefillNote && (
+                  <div className="prefill-chip">
+                    ✨ {prefillNote}
+                  </div>
+                )}
+
                 <div className="row">
                   <select
                     name="service"
                     required
+                    defaultValue={prefillService}
                   >
                     <option value="">
                       Service Needed
@@ -217,6 +232,7 @@ export function Contact() {
                   name="message"
                   rows={6}
                   placeholder="Describe your project..."
+                  defaultValue={prefillMessage}
                   required
                 />
 

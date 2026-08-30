@@ -167,6 +167,30 @@ export function Products() {
 
 
 /* ------------------------------------------------ */
+/* REQUEST BUTTON — routes into Contact with context */
+/* ------------------------------------------------ */
+
+function RequestProjectButton({ project }: { project: any }) {
+  const navigate = useNavigate();
+  return (
+    <button
+      className="products-cta-btn products-cta-btn-ghost"
+      onClick={() =>
+        navigate("/contact", {
+          state: {
+            projectName: project.name,
+            message: `Hi! I saw ${project.name} in your portfolio and I'd like something similar built for me. Here's what I need:\n\n`,
+          },
+        })
+      }
+    >
+      Request Something Like This
+      <ArrowRight size={16} />
+    </button>
+  );
+}
+
+/* ------------------------------------------------ */
 /* MODAL */
 /* ------------------------------------------------ */
 
@@ -207,7 +231,7 @@ function PreviewModal({
             <>
               <iframe
                 src={project.url}
-                title={project.title}
+                title={project.name}
                 className="project-iframe"
                 loading="lazy"
                 allow="fullscreen"
@@ -220,7 +244,7 @@ function PreviewModal({
             <div className="image-preview-fallback">
               <img
                 src={project.image}
-                alt={project.title}
+                alt={project.name}
                 className="preview-image"
               />
 
@@ -241,7 +265,7 @@ function PreviewModal({
             {project.category}
           </div>
 
-          <h2>{project.title}</h2>
+          <h2>{project.name}</h2>
 
           <p>{project.description}</p>
 
@@ -265,6 +289,8 @@ function PreviewModal({
                 <ExternalLink size={16} />
               </a>
             )}
+
+            <RequestProjectButton project={project} />
           </div>
         </div>
       </motion.div>

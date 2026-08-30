@@ -9,9 +9,12 @@ import { Services } from "./pages/Services";
 import { Products } from "./pages/Products";
 import  About  from "./pages/About";
 import { Contact } from "./pages/Contact";
+import { Careers } from "./pages/Careers";
+import { JobDetail } from "./pages/JobDetail";
 import { ArticleView } from './pages/ArticlesView';
 import ScrollToTop from './components/ScrollToTopButton';
 import ScrollToTops from './components/ScrollToTop';
+import { ChatWidget } from './components/ChatWidget';
 
 // ─── APP ROOT ─────────────────────────────────────────────────
 export default function App() {
@@ -42,11 +45,14 @@ export default function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:slug" element={<ArticleView />} />
           <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/:id" element={<JobDetail />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <ScrollToTop/>
       <Footer />
+      <ChatWidget />
     </div>
   </BrowserRouter>
 );

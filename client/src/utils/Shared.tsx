@@ -15,6 +15,12 @@ export interface Service {
 export interface Article {
   id: string; title: string; excerpt: string; category: string;
   date: string; readTime: string; featured: boolean; accent: string; image: string; content: string;
+  author?: string; authorRole?: string;
+}
+export interface Job {
+  id: string; title: string; department: string; type: string; location: string;
+  level: string; accent: string; icon: string; description: string;
+  responsibilities: string[]; requirements: string[]; posted: string;
 }
 // ─── UTILS ────────────────────────────────────────────────────
 export const statusMeta = (s: string) => ({ live: { l: "Live", c: "#00e5b4" }, beta: { l: "Beta", c: "#f5a623" }, dev: { l: "In Dev", c: "#6366f1" } }[s] || { l: s, c: "#888" });
@@ -35,6 +41,45 @@ export function useCounter(target: number) {
     return () => clearInterval(t);
   }, [go, target]);
   return { val, ref };
+}
+
+// ─── ENGAGEMENT (like / rate) ────────────────────────────────
+export function useProjectEngagement(id: string, baseLikes = 0) {
+  const likeKey = `yb_like_${id}`;
+  const rateKey = `yb_rate_${id}`;
+  const [liked, setLiked] = useState<boolean>(() => {
+    try { return localStorage.getItem(likeKey) === "1"; } catch { return false; }
+  });
+  const [likes, setLikes] = useState<number>(() => {
+    try {
+      const stored = localStorage.getItem(likeKey + "_n");
+      if (stored) return parseInt(stored, 10);
+    } catch { /* noop */ }
+    return baseLikes;
+  });
+  const [rating, setRating] = useState<number>(() => {
+    try { return parseInt(localStorage.getItem(rateKey) || "0", 10); } catch { return 0; }
+  });
+
+  const toggleLike = () => {
+    setLiked((prev) => {
+      const next = !prev;
+      const nextCount = Math.max(0, likes + (next ? 1 : -1));
+      setLikes(nextCount);
+      try {
+        localStorage.setItem(likeKey, next ? "1" : "0");
+        localStorage.setItem(likeKey + "_n", String(nextCount));
+      } catch { /* noop */ }
+      return next;
+    });
+  };
+
+  const rate = (stars: number) => {
+    setRating(stars);
+    try { localStorage.setItem(rateKey, String(stars)); } catch { /* noop */ }
+  };
+
+  return { liked, likes, rating, toggleLike, rate };
 }
 
 /**headers: [

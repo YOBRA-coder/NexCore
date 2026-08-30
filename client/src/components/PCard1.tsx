@@ -1,9 +1,11 @@
 /* ------------------------------------------------ */
-/* CARD */
+/* CARD (compact — used on Home) */
 /* ------------------------------------------------ */
 
 import { motion } from "framer-motion";
-import { Globe, Eye, Wrench, ExternalLink } from "lucide-react";
+import { Globe, Eye, Wrench, ExternalLink, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useProjectEngagement } from "../utils/Shared";
 
 export function PCard({
   project,
@@ -11,20 +13,23 @@ export function PCard({
   project: any;
 }) {
   type ViewMode = "live" | "beta" | "dev";
-  const mode: ViewMode = project.mode || "live";
+  const mode: ViewMode = project.status || "live";
+  const navigate = useNavigate();
+  const { liked, likes, toggleLike } = useProjectEngagement(project.id, project.baseLikes ?? 12);
 
   return (
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ duration: 0.25 }}
       className="product-card"
-       style={{ background:project.gradient,border:"1px solid var(--b)",borderRadius:20,overflow:"hidden",cursor:"pointer",transition:"all .3s cubic-bezier(.22,1,.36,1)" }}
+      style={{ background:project.gradient,border:"1px solid var(--b)",borderRadius:20,overflow:"hidden",cursor:"pointer",transition:"all .3s cubic-bezier(.22,1,.36,1)" }}
+      onClick={() => navigate("/products")}
     >
       {/* IMAGE */}
       <div className="product-image-wrap">
         <img
           src={project.image}
-          alt={project.title}
+          alt={project.name}
           className="product-image"
         />
 
@@ -42,6 +47,15 @@ export function PCard({
               ? "BETA"
               : "IN DEV"}
           </div>
+
+          <button
+            className={`like-badge${liked ? " liked" : ""}`}
+            onClick={(e) => { e.stopPropagation(); toggleLike(); }}
+            title={liked ? "Unlike" : "Like this project"}
+          >
+            <Heart size={13} fill={liked ? "#ff5c8a" : "none"} />
+            {likes}
+          </button>
         </div>
 
         <div className="product-actions">
@@ -50,6 +64,7 @@ export function PCard({
               href={project.url}
               target="_blank"
               rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="action-btn action-primary"
             >
               Visit
@@ -65,7 +80,7 @@ export function PCard({
           {project.category}
         </div>
 
-        <h3>{project.title}</h3>
+        <h3>{project.name}</h3>
 
         <p>{project.description}</p>
 

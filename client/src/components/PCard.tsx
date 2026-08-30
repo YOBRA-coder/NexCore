@@ -3,7 +3,8 @@
 /* ------------------------------------------------ */
 
 import { motion } from "framer-motion";
-import { Globe, Eye, Wrench, ExternalLink } from "lucide-react";
+import { Globe, Eye, Wrench, ExternalLink, Heart, Star } from "lucide-react";
+import { useProjectEngagement } from "../utils/Shared";
 
 export function PCard({
   project,
@@ -14,6 +15,7 @@ export function PCard({
 }) {
   type ViewMode = "live" | "beta" | "dev";
   const mode: ViewMode = project.status || "live";
+  const { liked, likes, rating, toggleLike, rate } = useProjectEngagement(project.id, project.baseLikes ?? 12);
 
   return (
     <motion.div
@@ -26,10 +28,10 @@ export function PCard({
     
     >
       {/* IMAGE */}
-      <div className="product-image-wrap" >
+      <div className="product-image-wrap" onClick={onPreview}>
         <img
           src={project.image}
-          alt={project.title}
+          alt={project.name}
           className="product-image"
         />
 
@@ -47,6 +49,15 @@ export function PCard({
               ? "BETA"
               : "IN DEV"}
           </div>
+
+          <button
+            className={`like-badge${liked ? " liked" : ""}`}
+            onClick={(e) => { e.stopPropagation(); toggleLike(); }}
+            title={liked ? "Unlike" : "Like this project"}
+          >
+            <Heart size={13} fill={liked ? "#ff5c8a" : "none"} />
+            {likes}
+          </button>
         </div>
 
         <div className="product-actions">
@@ -60,6 +71,7 @@ export function PCard({
               href={project.url}
               target="_blank"
               rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="action-btn action-primary"
             >
               Visit
@@ -75,7 +87,7 @@ export function PCard({
           {project.category}
         </div>
 
-        <h3>{project.title}</h3>
+        <h3>{project.name}</h3>
 
         <p>{project.description}</p>
 
@@ -86,6 +98,20 @@ export function PCard({
             ))}
           </div>
         )}
+
+        <div className="rate-row" onClick={(e) => e.stopPropagation()}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <button
+              key={n}
+              className="rate-star"
+              title={`Rate ${n} star${n > 1 ? "s" : ""}`}
+              onClick={() => rate(n)}
+            >
+              <Star size={14} fill={n <= rating ? project.accent : "none"} color={n <= rating ? project.accent : "var(--t3)"} />
+            </button>
+          ))}
+          {rating > 0 && <span className="rate-note">You rated {rating}/5</span>}
+        </div>
       </div>
     </motion.div>
   );

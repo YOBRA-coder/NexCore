@@ -110,7 +110,7 @@ export function Dashboard() {
               fontWeight: 800,
               fontSize: "3rem",
               lineHeight: 1,
-              color: "#fff",
+              color: "var(--t)",
               letterSpacing: "-.04em",
               marginBottom: 10,
             }}
@@ -140,10 +140,10 @@ export function Dashboard() {
           style={{
             display: "flex",
             gap: 8,
-            background: "rgba(255,255,255,.03)",
+            background: "color-mix(in srgb, var(--t) 3%, transparent)",
             padding: 6,
             borderRadius: 16,
-            border: "1px solid rgba(255,255,255,.06)",
+            border: "1px solid color-mix(in srgb, var(--t) 6%, transparent)",
             backdropFilter: "blur(20px)",
           }}
         >
@@ -161,7 +161,7 @@ export function Dashboard() {
                       : "transparent",
                   border:
                     tab === t
-                      ? "1px solid rgba(255,255,255,.12)"
+                      ? "1px solid color-mix(in srgb, var(--t) 12%, transparent)"
                       : "1px solid transparent",
                   cursor: "pointer",
                   color: tab === t ? "#fff" : "var(--t3)",
@@ -210,8 +210,8 @@ export function Dashboard() {
               overflow: "hidden",
               padding: "1.6rem",
               background:
-                "linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))",
-              border: "1px solid rgba(255,255,255,.06)",
+                "linear-gradient(180deg, color-mix(in srgb, var(--t) 3%, transparent), color-mix(in srgb, var(--t) 1.5%, transparent))",
+              border: "1px solid color-mix(in srgb, var(--t) 6%, transparent)",
               borderRadius: 24,
               backdropFilter: "blur(20px)",
               boxShadow:
@@ -271,7 +271,7 @@ export function Dashboard() {
                 fontFamily: "var(--fd)",
                 fontWeight: 800,
                 fontSize: 34,
-                color: "#fff",
+                color: "var(--t)",
                 position: "relative",
                 zIndex: 2,
               }}
@@ -306,8 +306,8 @@ export function Dashboard() {
         <div
           style={{
             background:
-              "linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))",
-            border: "1px solid rgba(255,255,255,.06)",
+              "linear-gradient(180deg, color-mix(in srgb, var(--t) 3%, transparent), color-mix(in srgb, var(--t) 1.5%, transparent))",
+            border: "1px solid color-mix(in srgb, var(--t) 6%, transparent)",
             borderRadius: 26,
             padding: "1.8rem",
             backdropFilter: "blur(18px)",
@@ -326,7 +326,7 @@ export function Dashboard() {
               style={{
                 fontFamily: "var(--fd)",
                 fontWeight: 700,
-                color: "#fff",
+                color: "var(--t)",
                 fontSize: 17,
               }}
             >
@@ -356,7 +356,7 @@ export function Dashboard() {
                 key={p.id}
                 whileHover={{
                   x: 4,
-                  backgroundColor: "rgba(255,255,255,.02)",
+                  backgroundColor: "color-mix(in srgb, var(--t) 2%, transparent)",
                 }}
                 style={{
                   display: "flex",
@@ -389,7 +389,7 @@ export function Dashboard() {
                   <div
                     style={{
                       fontWeight: 600,
-                      color: "#fff",
+                      color: "var(--t)",
                       fontSize: 14,
                     }}
                   >
@@ -459,15 +459,15 @@ export function Dashboard() {
           <div
             style={{
               background:
-                "linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))",
-              border: "1px solid rgba(255,255,255,.06)",
+                "linear-gradient(180deg, color-mix(in srgb, var(--t) 3%, transparent), color-mix(in srgb, var(--t) 1.5%, transparent))",
+              border: "1px solid color-mix(in srgb, var(--t) 6%, transparent)",
               borderRadius: 24,
               padding: "1.5rem",
             }}
           >
             <h3
               style={{
-                color: "#fff",
+                color: "var(--t)",
                 marginBottom: "1.4rem",
               }}
             >
@@ -504,7 +504,7 @@ export function Dashboard() {
                   style={{
                     height: 6,
                     borderRadius: 999,
-                    background: "rgba(255,255,255,.05)",
+                    background: "color-mix(in srgb, var(--t) 5%, transparent)",
                     overflow: "hidden",
                   }}
                 >

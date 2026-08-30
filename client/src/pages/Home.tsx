@@ -5,6 +5,7 @@ import { PROJECTS, SERVICES, STACK } from "../utils/data";
 import  {PCard}  from '../components/PCard1';
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Tilt } from "react-tilt";
+import { PromoBanner } from "../components/PromoBanner";
 
 // ─── HOME ─────────────────────────────────────────────────────
 export function Home() {
@@ -50,6 +51,7 @@ export function Home() {
   return (
     <div>
         <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
+        <PromoBanner />
       {/* HERO */}
       <section ref={heroRef} onMouseMove={onMove} style={{ minHeight:"100vh",display:"flex",alignItems:"center",position:"relative",overflow:"hidden",background:"var(--bg)",paddingTop:68 }}>
         <div className="mesh" />
@@ -122,7 +124,7 @@ export function Home() {
               <div className="au4" style={{ display:"flex",gap:"2.2rem",flexWrap:"wrap" }}>
                 {[{ r:c1.ref,v:c1.val,s:"+",l:"Projects Built" },{ r:c2.ref,v:c2.val,s:"+",l:"Clients Served" },{ r:c3.ref,v:c3.val,s:"%",l:"Uptime SLA" },{ r:c4.ref,v:c4.val,s:" yrs",l:"Experience" }].map((s,i) => (
                   <div key={i} ref={s.r}>
-                    <div style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:29,lineHeight:1,background:"linear-gradient(135deg,#fff,rgba(255,255,255,.65))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>{s.v}{s.s}</div>
+                    <div style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:29,lineHeight:1,background:"linear-gradient(135deg,var(--t),color-mix(in srgb, var(--t) 65%, transparent))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>{s.v}{s.s}</div>
                     <div style={{ fontFamily:"var(--fb)",fontSize:11.5,color:"var(--t3)",marginTop:5 }}>{s.l}</div>
                   </div>
                 ))}
@@ -179,7 +181,7 @@ export function Home() {
         <div style={{ maxWidth:1320,margin:"0 auto",position:"relative" }}>
           <div style={{ textAlign:"center",marginBottom:"4rem" }}>
             <div className="chip" style={{ margin:"0 auto 1.5rem" }}>Our Expertise</div>
-            <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.9rem,3.5vw,3rem)",color:"#fff",letterSpacing:"-.02em" }}>
+            <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.9rem,3.5vw,3rem)",color:"var(--t)",letterSpacing:"-.02em" }}>
               One studio. <span className="gtext">Every layer.</span>
             </h2>
             <p style={{ fontFamily:"var(--fb)",color:"var(--t2)",fontSize:16,marginTop:14,maxWidth:500,margin:"14px auto 0" }}>
@@ -239,7 +241,7 @@ export function Home() {
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:"3.5rem",flexWrap:"wrap",gap:"1rem" }}>
             <div>
               <div className="chip" style={{ marginBottom:"1rem" }}>Live Platforms</div>
-              <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.9rem,3.5vw,3rem)",color:"#fff",letterSpacing:"-.02em" }}>
+              <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.9rem,3.5vw,3rem)",color:"var(--t)",letterSpacing:"-.02em" }}>
                 Built. <span className="gtext-gold">Deployed.</span> Running.
               </h2>
             </div>
@@ -256,7 +258,7 @@ export function Home() {
         <div style={{ maxWidth:1320,margin:"0 auto" }}>
           <div style={{ textAlign:"center",marginBottom:"3.5rem" }}>
             <div className="chip" style={{ margin:"0 auto 1.25rem" }}>Client Stories</div>
-            <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.7rem,3vw,2.5rem)",color:"#fff",letterSpacing:"-.02em" }}>What clients say</h2>
+            <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(1.7rem,3vw,2.5rem)",color:"var(--t)",letterSpacing:"-.02em" }}>What clients say</h2>
           </div>
           <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1.25rem" }} className="g3">
             {[
@@ -264,11 +266,19 @@ export function Home() {
               { q:"The Android app they built saved our logistics team 4 hours of manual work every single day.", a:"Sarah K.", r:"Founder, QuickDeliver", c:"#a855f7" },
               { q:"Brand identity + website package was exactly what we needed to pitch investors. Closed our seed round.", a:"James O.", r:"CEO, FinEdge Capital", c:"#f5a623" }
             ].map((t,i) => (
-              <div key={i} style={{ padding:"1.75rem",background:"var(--s)",border:"1px solid var(--b)",borderRadius:18,borderTop:`3px solid ${t.c}` }}>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                whileHover={{ y: -6 }}
+                style={{ padding:"1.75rem",background:"var(--s)",border:"1px solid var(--b)",borderRadius:18,borderTop:`3px solid ${t.c}` }}
+              >
                 <p style={{ fontFamily:"var(--fb)",fontSize:14.5,color:"var(--t2)",lineHeight:1.78,marginBottom:"1.25rem",fontStyle:"italic" }}>"{t.q}"</p>
-                <div style={{ fontFamily:"var(--fb)",fontWeight:600,color:"#fff",fontSize:14 }}>{t.a}</div>
+                <div style={{ fontFamily:"var(--fb)",fontWeight:600,color:"var(--t)",fontSize:14 }}>{t.a}</div>
                 <div style={{ fontFamily:"var(--fm)",fontSize:11,color:"var(--t3)",marginTop:3 }}>{t.r}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -279,7 +289,7 @@ export function Home() {
         <div style={{ position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:700,height:700,borderRadius:"50%",background:"radial-gradient(circle,rgba(124,58,237,.07) 0%,transparent 70%)",pointerEvents:"none" }} />
         <div style={{ position:"relative",maxWidth:680,margin:"0 auto" }}>
           <div className="chip" style={{ margin:"0 auto 1.5rem" }}>Ready to launch?</div>
-          <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(2rem,4vw,3.4rem)",color:"#fff",letterSpacing:"-.025em",lineHeight:1.1,marginBottom:"1.25rem" }}>
+          <h2 style={{ fontFamily:"var(--fd)",fontWeight:700,fontSize:"clamp(2rem,4vw,3.4rem)",color:"var(--t)",letterSpacing:"-.025em",lineHeight:1.1,marginBottom:"1.25rem" }}>
             Let's build your next<br /><span className="gtext">big thing together</span>
           </h2>
           <p style={{ fontFamily:"var(--fb)",color:"var(--t2)",fontSize:16.5,lineHeight:1.75,marginBottom:"2.5rem" }}>
