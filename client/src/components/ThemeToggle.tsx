@@ -17,7 +17,7 @@ export function getInitialTheme(): "light" | "dark" {
   if (typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: light)").matches) {
     return "light";
   }
-  return "dark";
+  return "light";
 }
 
 export function ThemeToggle({ compact = false }: { compact?: boolean }) {
