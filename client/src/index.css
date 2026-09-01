@@ -19,6 +19,7 @@
 }
 
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
 .dot1{
   width:8px;
   height:8px;

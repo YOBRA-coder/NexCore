@@ -20,7 +20,7 @@ export function Nav() {
             </div>
            <span style={{ fontFamily: "var(--fd)", fontWeight: 700, fontSize: 19, color: "var(--t)", display: "inline-flex", alignItems: "baseline" }}>
   Y
-  <span className="dot"></span>
+  <span className="dot1"></span>
   bby
 </span>
           </div>
