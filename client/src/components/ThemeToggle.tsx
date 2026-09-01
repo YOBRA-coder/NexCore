@@ -1,33 +1,21 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
+import { type Theme, getTheme, toggleTheme as toggleThemeShared, onThemeChange, getInitialTheme } from "../utils/theme";
 
-const THEME_KEY = "yb_theme";
-
-function applyTheme(theme: "light" | "dark") {
-  document.documentElement.setAttribute("data-theme", theme);
-  try { localStorage.setItem(THEME_KEY, theme); } catch { /* noop */ }
-}
-
-export function getInitialTheme(): "light" | "dark" {
-  try {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === "light" || saved === "dark") return saved;
-  } catch { /* noop */ }
-  if (typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: light)").matches) {
-    return "light";
-  }
-  return "light";
-}
+// Re-exported for main.tsx's initial `data-theme` set on the <html> element.
+export { getInitialTheme };
 
 export function ThemeToggle({ compact = false }: { compact?: boolean }) {
-  const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
+  const [theme, setThemeState] = useState<Theme>(getTheme);
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    // Keep this button's icon in sync even when the theme is changed
+    // elsewhere (e.g. the Yobby Assistant chat widget).
+    return onThemeChange(setThemeState);
+  }, []);
 
-  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  const toggle = () => setThemeState(toggleThemeShared());
 
   return (
     <button

@@ -18,10 +18,10 @@ export function Nav() {
             <div className="brand-logo-mark brand-logo-mark-nav">
               <img src="/yobby.png" alt="Yobby Technologies logo"/>
             </div>
-           <span style={{ fontFamily: "var(--fd)", fontWeight: 700, fontSize: 19, color: "var(--t)", display: "inline-flex", alignItems: "baseline" }}>
+            <span style={{ fontFamily: "var(--fd)", fontWeight: 700, fontSize: 19, color: "var(--t)", display: "inline-flex", alignItems: "baseline" }}>
   Y
-  <span className="dot1"></span>
-  bby
+  <span className="dot"></span>
+   bby
 </span>
           </div>
           <div className="hm" style={{ display:"flex",gap:2 }}>

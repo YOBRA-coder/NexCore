@@ -8,29 +8,13 @@
 /* PROGRESS */
 
 .dot { 
-  display: inline-block;
-  width: 6px; 
-  height: 6px; 
+  width: 6px; height: 6px; 
   background: var(--accent); 
   border-radius: 50%; 
-  margin: 0 2px; /* Adds space left and right of the dot */
-  vertical-align: middle; /* Aligns it vertically with the letters */
+  margin-left: 3px;
   animation: blink 2s ease-in-out infinite;
 }
-
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.dot1{
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #622be4;
-  box-shadow: 0 0 12px #8b5cf6;
-  margin: 0 2px; /* Adds space left and right of the dot */
-  vertical-align: middle; /* Aligns it vertically with the letters */
-  animation: pulse2 2s infinite;
-}
 .progress{
   position:fixed;
   top:0;
@@ -39,7 +23,7 @@
   height:3px;
   background:linear-gradient(
     90deg,
-    #8b5cf6,
+    #793fff,
     #00e5b4,
     #f5a623
   );
@@ -104,8 +88,8 @@
   width:3px;
   height:3px;
   border-radius:50%;
-  background:#8b5cf6;
-  box-shadow:0 0 12px #8b5cf6;
+  background:#793fff;
+  box-shadow:0 0 12px #793fff;
 }
 
 /* TEXT */
@@ -123,6 +107,17 @@
   margin-bottom:2rem;
 }
 
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #793fff;
+  box-shadow: 0 0 12px #793fff;
+  margin: 0 2px; /* Adds space left and right of the dot */
+  vertical-align: middle; /* Aligns it vertically with the letters */
+  animation: pulse2 2s infinite;
+}
 
 
 .hero-title{
@@ -141,7 +136,7 @@
 .gtext{
   background:linear-gradient(
     135deg,
-    #8b5cf6,
+    #793fff,
     #00e5b4
   );
   -webkit-background-clip:text;
@@ -216,7 +211,7 @@
   border-radius:18px;
   background:linear-gradient(
     135deg,
-    #8b5cf6,
+    #793fff,
     #6d28d9
   );
   color:var(--t);
@@ -362,7 +357,7 @@
   inset:0;
   background:
    radial-gradient(circle at center,
-   rgba(139,92,246,.18),
+   rgba(121,63,255,.18),
    transparent 70%);
 }
 
@@ -390,7 +385,7 @@
 }
 
 .purple{
-  border:1px solid rgba(139,92,246,.25);
+  border:1px solid rgba(121,63,255,.25);
 }
 
 .green{
@@ -468,9 +463,9 @@
 }
 
 .service-card:hover{
-  border-color:#8b5cf6;
+  border-color:#793fff;
   box-shadow:
-   0 20px 60px rgba(139,92,246,.18);
+   0 20px 60px rgba(121,63,255,.18);
 }
 
 .icon{
@@ -565,7 +560,7 @@
 .products-bg-1 {
   width: 420px;
   height: 420px;
-  background: #8b5cf6;
+  background: #793fff;
   top: -120px;
   left: -120px;
 }
@@ -661,13 +656,13 @@
 
 .filter-btn:hover {
   color: var(--t);
-  border-color: rgba(139,92,246,.4);
+  border-color: rgba(121,63,255,.4);
 }
 
 .filter-active {
   color: var(--t);
-  background: rgba(139,92,246,.16);
-  border-color: rgba(139,92,246,.4);
+  background: rgba(121,63,255,.16);
+  border-color: rgba(121,63,255,.4);
 }
 
 .products-grid {
@@ -1953,6 +1948,25 @@ textarea {
   padding:6px 11px; border-radius:999px; cursor:pointer; transition:all .2s;
 }
 .chat-quick-replies button:hover{ background:rgba(139,92,246,.18); }
+
+.chat-msg-chips{
+  display:flex; flex-direction:column; gap:6px; align-self:flex-start; max-width:82%; margin-top:-2px;
+}
+.chat-msg-chips button{
+  display:flex; align-items:center; justify-content:space-between; gap:8px; text-align:left;
+  background:var(--s); border:1px solid var(--b); color:var(--t2);
+  font-family:var(--fb); font-size:12px; padding:8px 12px; border-radius:10px;
+  cursor:pointer; transition:all .2s;
+}
+.chat-msg-chips button:hover{ border-color:rgba(139,92,246,.4); color:var(--t); }
+
+.chat-cta-btn{
+  align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7); color:#fff; border:none;
+  font-family:var(--fb); font-weight:600; font-size:12px;
+  padding:8px 14px; border-radius:10px; cursor:pointer; transition:transform .15s;
+}
+.chat-cta-btn:hover{ transform:translateY(-1px); }
 
 .chat-footer-links{
   display:flex; gap:14px; padding:8px 16px; border-top:1px solid color-mix(in srgb, var(--t) 6%, transparent);

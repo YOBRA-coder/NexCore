@@ -1,47 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle, X, Send, Sparkles, Mail, Phone } from "lucide-react";
+import { MessageCircle, X, Send, Sparkles, Mail, Phone, ArrowRight, Moon } from "lucide-react";
+import { matchIntent, type ChatAction, type Chip } from "../utils/assistant";
+import { askAI, type AIChatMessage } from "../utils/aiChat";
 
-type Msg = { from: "bot" | "user"; text: string };
+type Msg = { from: "bot" | "user"; text: string; action?: ChatAction };
 
 const QUICK_REPLIES = [
   "What services do you offer?",
-  "How much does a project cost?",
+  "I have a project idea",
   "Do you have open jobs?",
-  "Talk to a human",
+  "Toggle dark mode",
 ];
-
-function reply(input: string): string {
-  const q = input.toLowerCase();
-  if (/(price|cost|budget|much)/.test(q)) {
-    return "Pricing depends on scope — web projects start from $400, Android apps from $600, and AI/trading systems from $800. Want a tailored quote? I can take you to our project form.";
-  }
-  if (/(job|career|hiring|apply|work with you|position)/.test(q)) {
-    return "We're hiring across Engineering, Mobile, AI, Design, and Trading Systems. Head over to our Careers page to see open roles and apply.";
-  }
-  if (/(service|offer|do you build|what.*(build|make))/.test(q)) {
-    return "We build web & SaaS apps, Android apps, AI/ML systems, trading bots, brand & UI design, cloud/DevOps, and data dashboards. Check the Services page for full details and pricing.";
-  }
-  if (/(human|agent|person|call|whatsapp|phone)/.test(q)) {
-    return "Of course — you can reach our team directly at hello@yobbytech.com or +254 726 553 481. Want me to open the contact form for you?";
-  }
-  if (/(m-?pesa|payment)/.test(q)) {
-    return "Yes, M-Pesa integration is one of our specialties, alongside Stripe and card payments — commonly used in our fintech and e-commerce builds.";
-  }
-  if (/(time|how long|timeline|deadline)/.test(q)) {
-    return "Most projects run 2–6 weeks depending on scope, with weekly demos. Rush timelines are possible — just flag it on the project form.";
-  }
-  if (/(hi|hello|hey|sasa|habari)/.test(q)) {
-    return "Hey there! 👋 I'm the Yobby assistant. Ask me about services, pricing, careers, or timelines — or I can connect you to the team.";
-  }
-  return "Good question — I'd recommend sending it directly to our team so you get a precise answer. Want me to open the project form, or would you rather email hello@yobbytech.com?";
-}
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { from: "bot", text: "Hey! 👋 I'm the Yobby AI assistant. Ask about services, pricing, timelines, or careers — or I'll connect you with the team." },
+    {
+      from: "bot",
+      text: "Hey! 👋 I'm the Yobby Assistant. Ask me anything — services, pricing, a project idea to scope out, open jobs, articles — or just tell me to switch the site to dark or light mode.",
+    },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -54,16 +33,62 @@ export function ChatWidget() {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open, typing]);
 
-  const send = (text: string) => {
+  const goTo = (path: string) => {
+    navigate(path);
+    setOpen(false);
+  };
+
+  const send = async (text: string) => {
     if (!text.trim()) return;
-    setMessages((m) => [...m, { from: "user", text }]);
+    const userMsg: Msg = { from: "user", text };
+    const history: AIChatMessage[] = [...messages, userMsg]
+      .filter((m) => !m.action || m.from === "user")
+      .map((m) => ({ role: m.from === "user" ? "user" : "assistant", content: m.text }));
+
+    setMessages((m) => [...m, userMsg]);
     setInput("");
+
+    // 1. Try a deterministic action first — instant, no network call.
+    const intent = matchIntent(text);
+    if (intent) {
+      setTyping(true);
+      setTimeout(() => {
+        setTyping(false);
+        setMessages((m) => [...m, { from: "bot", text: intent.text, action: intent.action }]);
+        if (!open) setUnread((u) => u + 1);
+      }, 350);
+      return;
+    }
+
+    // 2. Fall back to the real AI for open-ended questions / scoping ideas.
     setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMessages((m) => [...m, { from: "bot", text: reply(text) }]);
-      if (!open) setUnread((u) => u + 1);
-    }, 700 + Math.random() * 500);
+    const reply = await askAI(history);
+    setTyping(false);
+    setMessages((m) => [...m, { from: "bot", text: reply }]);
+    if (!open) setUnread((u) => u + 1);
+  };
+
+  const renderAction = (action: ChatAction | undefined) => {
+    if (!action) return null;
+    if (action.type === "navigate") {
+      return (
+        <button className="chat-cta-btn" onClick={() => goTo(action.path)}>
+          {action.label} <ArrowRight size={13} />
+        </button>
+      );
+    }
+    if (action.type === "chips") {
+      return (
+        <div className="chat-msg-chips">
+          {action.chips.map((c: Chip) => (
+            <button key={c.path + c.label} onClick={() => goTo(c.path)}>
+              {c.label} <ArrowRight size={12} />
+            </button>
+          ))}
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -117,13 +142,9 @@ export function ChatWidget() {
 
             <div className="chat-body">
               {messages.map((m, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`chat-bubble chat-${m.from}`}
-                >
-                  {m.text}
+                <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ display: "contents" }}>
+                  <div className={`chat-bubble chat-${m.from}`}>{m.text}</div>
+                  {m.from === "bot" && renderAction(m.action)}
                 </motion.div>
               ))}
 
@@ -135,7 +156,7 @@ export function ChatWidget() {
               <div ref={endRef} />
             </div>
 
-            {messages.length <= 2 && !typing && (
+            {messages.length <= 1 && !typing && (
               <div className="chat-quick-replies">
                 {QUICK_REPLIES.map((q) => (
                   <button key={q} onClick={() => send(q)}>{q}</button>
@@ -144,7 +165,15 @@ export function ChatWidget() {
             )}
 
             <div className="chat-footer-links">
-              <button onClick={() => { navigate("/contact"); setOpen(false); }}>
+              <button onClick={() => goTo("/products")}>Products</button>
+              <button onClick={() => goTo("/services")}>Services</button>
+              <button onClick={() => goTo("/request-quote")}>Get a Quote</button>
+              <button onClick={() => send("toggle theme")} title="Toggle dark / light mode">
+                <Moon size={12} /> Theme
+              </button>
+            </div>
+            <div className="chat-footer-links">
+              <button onClick={() => goTo("/contact")}>
                 <Mail size={12} /> Contact form
               </button>
               <a href="tel:+254726553481">
@@ -159,7 +188,7 @@ export function ChatWidget() {
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type a message..."
+                placeholder="Ask me anything..."
               />
               <button type="submit" aria-label="Send">
                 <Send size={16} />
