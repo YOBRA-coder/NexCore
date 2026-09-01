@@ -51,7 +51,9 @@ export default async function handler(req: any, res: any) {
     }
 
     // Google Gemini REST API endpoint utilizing the free 1.5 Flash model
-    const geminiUrl = `https://googleapis.com{apiKey}`;
+// Replace the old geminiUrl variable line with this:
+const geminiUrl = "https://googleapis.com" + apiKey;
+
 
     // Transform roles to match Gemini format ('assistant' becomes 'model')
     const contents = messages.map((m) => ({
