@@ -8,13 +8,25 @@
 /* PROGRESS */
 
 .dot { 
-  width: 6px; height: 6px; 
+  display: inline-block;
+  width: 6px; 
+  height: 6px; 
   background: var(--accent); 
   border-radius: 50%; 
-  margin-left: 3px;
+  margin: 0 2px; /* Adds space left and right of the dot */
+  vertical-align: middle; /* Aligns it vertically with the letters */
   animation: blink 2s ease-in-out infinite;
 }
+
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.dot1{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#8b5cf6;
+  box-shadow:0 0 12px #8b5cf6;
+  animation: pulse2 2s infinite;
+}
 .progress{
   position:fixed;
   top:0;
@@ -107,14 +119,7 @@
   margin-bottom:2rem;
 }
 
-.dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#8b5cf6;
-  box-shadow:0 0 12px #8b5cf6;
-  animation: pulse2 2s infinite;
-}
+
 
 .hero-title{
   font-size:clamp(3rem,7vw,6rem);
