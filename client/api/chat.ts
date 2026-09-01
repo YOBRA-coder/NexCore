@@ -1,8 +1,8 @@
 // POST /api/chat — Vercel serverless function (auto-deployed from client/api/).
 //
-// Keeps the Anthropic API key server-side. Requires an environment
+// Keeps the Gemini API key server-side. Requires an environment
 // variable set in your Vercel project:
-//   Project → Settings → Environment Variables → ANTHROPIC_API_KEY
+//   Project → Settings → Environment Variables → GEMINI_API_KEY
 //
 // Without that variable set, this returns a clear 500 error instead
 // of failing silently — the chat widget shows that message to the
@@ -31,11 +31,12 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  // Switched from Anthropic to Gemini API key
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     res.status(500).json({
       error:
-        "The AI assistant isn't fully set up yet — an ANTHROPIC_API_KEY needs to be added in the Vercel project settings.",
+        "The AI assistant isn't fully set up yet — a GEMINI_API_KEY needs to be added in the Vercel project settings.",
     });
     return;
   }
@@ -49,33 +50,42 @@ export default async function handler(req: any, res: any) {
       return;
     }
 
-    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+    // Google Gemini REST API endpoint utilizing the free 1.5 Flash model
+    const geminiUrl = `https://googleapis.com{apiKey}`;
+
+    // Transform roles to match Gemini format ('assistant' becomes 'model')
+    const contents = messages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }]
+    }));
+
+    const geminiRes = await fetch(geminiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-5",
-        max_tokens: 400,
-        system: SYSTEM_PROMPT,
-        messages: messages.map((m) => ({ role: m.role, content: m.content })),
+        contents: contents,
+        systemInstruction: {
+          parts: [{ text: SYSTEM_PROMPT }]
+        },
+        generationConfig: {
+          maxOutputTokens: 400,
+        }
       }),
     });
 
-    if (!anthropicRes.ok) {
-      const errText = await anthropicRes.text();
-      console.error("Anthropic API error:", anthropicRes.status, errText);
+    if (!geminiRes.ok) {
+      const errText = await geminiRes.text();
+      console.error("Gemini API error:", geminiRes.status, errText);
       res.status(502).json({ error: "The AI service didn't respond — please try again." });
       return;
     }
 
-    const data = await anthropicRes.json();
-    const text = (data.content || [])
-      .map((block: any) => (block.type === "text" ? block.text : ""))
-      .join("\n")
-      .trim();
+    const data = await geminiRes.json();
+    
+    // Extract text safely from Gemini response structure
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
     res.status(200).json({ reply: text || "Sorry, I couldn't generate a reply — try rephrasing?" });
   } catch (err) {
