@@ -30,7 +30,10 @@ export function ChatWidget() {
 
   useEffect(() => {
     if (open) setUnread(0);
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Smoothly scroll down whenever messages layout finishes updating
+    setTimeout(() => {
+      endRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
   }, [messages, open, typing]);
 
   const goTo = (path: string) => {
@@ -41,9 +44,14 @@ export function ChatWidget() {
   const send = async (text: string) => {
     if (!text.trim()) return;
     const userMsg: Msg = { from: "user", text };
+    
+    // Build chat history safely ignoring actions
     const history: AIChatMessage[] = [...messages, userMsg]
       .filter((m) => !m.action || m.from === "user")
-      .map((m) => ({ role: m.from === "user" ? "user" : "assistant", content: m.text }));
+      .map((m) => ({
+        role: m.from === "user" ? "user" : "assistant",
+        content: m.text,
+      }));
 
     setMessages((m) => [...m, userMsg]);
     setInput("");
@@ -62,10 +70,15 @@ export function ChatWidget() {
 
     // 2. Fall back to the real AI for open-ended questions / scoping ideas.
     setTyping(true);
-    const reply = await askAI(history);
-    setTyping(false);
-    setMessages((m) => [...m, { from: "bot", text: reply }]);
-    if (!open) setUnread((u) => u + 1);
+    try {
+      const reply = await askAI(history);
+      setTyping(false);
+      setMessages((m) => [...m, { from: "bot", text: reply }]);
+      if (!open) setUnread((u) => u + 1);
+    } catch (error) {
+      setTyping(false);
+      setMessages((m) => [...m, { from: "bot", text: "Sorry, I ran into an error. Please try again." }]);
+    }
   };
 
   const renderAction = (action: ChatAction | undefined) => {
@@ -104,11 +117,21 @@ export function ChatWidget() {
         <span className="chat-fab-ring" />
         <AnimatePresence mode="wait">
           {open ? (
-            <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+            <motion.span
+              key="x"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+            >
               <X size={22} />
             </motion.span>
           ) : (
-            <motion.span key="c" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+            <motion.span
+              key="c"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+            >
               <MessageCircle size={22} />
             </motion.span>
           )}
@@ -142,15 +165,21 @@ export function ChatWidget() {
 
             <div className="chat-body">
               {messages.map((m, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ display: "contents" }}>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="chat-bubble-container"
+                >
                   <div className={`chat-bubble chat-${m.from}`}>{m.text}</div>
                   {m.from === "bot" && renderAction(m.action)}
                 </motion.div>
               ))}
-
               {typing && (
                 <div className="chat-bubble chat-bot chat-typing">
-                  <span /><span /><span />
+                  <span />
+                  <span />
+                  <span />
                 </div>
               )}
               <div ref={endRef} />
@@ -159,7 +188,9 @@ export function ChatWidget() {
             {messages.length <= 1 && !typing && (
               <div className="chat-quick-replies">
                 {QUICK_REPLIES.map((q) => (
-                  <button key={q} onClick={() => send(q)}>{q}</button>
+                  <button key={q} onClick={() => send(q)}>
+                    {q}
+                  </button>
                 ))}
               </div>
             )}
@@ -172,6 +203,7 @@ export function ChatWidget() {
                 <Moon size={12} /> Theme
               </button>
             </div>
+
             <div className="chat-footer-links">
               <button onClick={() => goTo("/contact")}>
                 <Mail size={12} /> Contact form
@@ -183,7 +215,10 @@ export function ChatWidget() {
 
             <form
               className="chat-input-row"
-              onSubmit={(e) => { e.preventDefault(); send(input); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                send(input);
+              }}
             >
               <input
                 value={input}
