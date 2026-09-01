@@ -54,7 +54,6 @@ export default async function handler(req: any, res: any) {
 // Replace the old geminiUrl variable line with this:
 const geminiUrl = "https://googleapis.com" + apiKey;
 
-
     // Transform roles to match Gemini format ('assistant' becomes 'model')
     const contents = messages.map((m) => ({
       role: m.role === "assistant" ? "model" : "user",
