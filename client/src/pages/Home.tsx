@@ -6,6 +6,7 @@ import  {PCard}  from '../components/PCard1';
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Tilt } from "react-tilt";
 import { PromoBanner } from "../components/PromoBanner";
+import { SEO } from "../components/SEO";
 
 // ─── HOME ─────────────────────────────────────────────────────
 export function Home() {
@@ -50,6 +51,11 @@ export function Home() {
 
   return (
     <div>
+        <SEO
+          title="Yobby Technologies | Web Apps & Fintech Development"
+          description="Yobby Technologies builds premium web applications, M-Pesa integration, fintech platforms and digital solutions for businesses in Kenya and Africa."
+          path="/"
+        />
         <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
         <PromoBanner />
       {/* HERO */}

@@ -29,7 +29,7 @@ export function Footer() {
             </div>
           </div>
           {[
-            { title:"Company", items:[["Home","/"],["About","/about"],["Articles","/articles"],["Careers","/careers"],["Contact","/contact"]] },
+            { title:"Company", items:[["Home","/"],["About","/about"],["Articles","/articles"],["Careers","/careers"],["Contact","/contact"],["Request a Quote","/request-quote"]] },
             { title:"Platform", items:[["Dashboard","/dashboard"],["Products","/products"],["Services","/services"]] },
             { title:"Services", items:[["Web Development","/services"],["Android Apps","/services"],["AI & ML","/services"],["Trading Bots","/services"],["Design","/services"]] }
           ].map(col => (

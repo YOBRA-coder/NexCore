@@ -1,5 +1,6 @@
 import { motion, useScroll, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { SEO } from "../components/SEO";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -19,6 +20,11 @@ export default function About() {
     const { scrollYProgress } = useScroll();
   return (
     <div className="about-page">
+    <SEO
+      title="About"
+      description="Yobby Technologies is a full-service digital studio in Nakuru, Kenya, building web, mobile, AI, trading, design and cloud products for clients across Africa."
+      path="/about"
+    />
     <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
 
       {/* Background Effects */}

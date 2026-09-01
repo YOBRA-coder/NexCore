@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { PROJECTS } from "../utils/data";
 import {PCard} from "../components/PCard";
+import { SEO } from "../components/SEO";
 
 
 
@@ -44,6 +45,11 @@ export function Products() {
 
   return (
     <div className="products-page">
+    <SEO
+      title="Products"
+      description="Explore web apps, mobile apps, fintech and trading platforms built by Yobby Technologies for clients across Kenya and Africa."
+      path="/products"
+    />
     <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
       <div className="products-bg products-bg-1" />
       <div className="products-bg products-bg-2" />

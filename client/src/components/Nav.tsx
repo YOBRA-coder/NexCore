@@ -9,7 +9,7 @@ export function Nav() {
   const navigate = useNavigate();
   const [mob, setMob] = useState(false);
   useEffect(() => { const h = () => setScrolled(window.scrollY > 40); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
-  const links = [["Home","/"],["Dashboard","/dashboard"],["Services","/services"],["Products","/products"],["Articles","/articles"],["Careers","/careers"],["About","/about"],["Contact","/contact"]];
+  const links = [["Home","/"],["Dashboard","/dashboard"],["Services","/services"],["Products","/products"],["Articles","/articles"],["Careers","/careers"],["About","/about"],["Contact","/contact"],["Request a Quote","/request-quote"]];
   return (
     <>
       <nav style={{ position:"fixed",top:0,left:0,right:0,zIndex:900,background:scrolled?"color-mix(in srgb, var(--bg) 90%, transparent)":"transparent",backdropFilter:scrolled?"blur(22px)":"none",borderBottom:scrolled?"1px solid rgba(139,92,246,0.1)":"none",transition:"all .4s",padding:"0 1.5rem" }}>

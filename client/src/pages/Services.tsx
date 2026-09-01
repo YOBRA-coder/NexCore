@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { SERVICES } from "../utils/data";
 import { motion, useScroll } from "framer-motion";
+import { SEO } from "../components/SEO";
 
 // ─── SERVICES ─────────────────────────────────────────────────
 export function Services() {
@@ -22,6 +23,11 @@ const item = {
 
 return (
   <div style={{ minHeight: "100vh", background: "var(--bg)", paddingTop: 68 }}>
+    <SEO
+      title="Services"
+      description="Web development, mobile apps, M-Pesa & fintech integration, AI/ML, trading bots, and design services from Yobby Technologies."
+      path="/services"
+    />
     <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
 
     <div style={{ position: "relative", overflow: "hidden" }}>

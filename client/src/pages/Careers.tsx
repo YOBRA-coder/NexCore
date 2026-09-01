@@ -12,6 +12,7 @@ import {
 import { JOBS } from "../utils/data";
 import type { Job } from "../utils/Shared";
 import { JobApplyForm } from "../components/JobApplyForm";
+import { SEO, SITE_URL } from "../components/SEO";
 
 export const GENERAL_JOB: Job = {
   id: "general",
@@ -56,6 +57,21 @@ export function Careers() {
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", paddingTop: 68 }}>
+      <SEO
+        title="Careers"
+        description="Open engineering, design, and trading roles at Yobby Technologies — a remote-friendly digital studio building web, mobile, fintech and AI products."
+        path="/careers"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: filtered.map((j, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_URL}/careers/${j.id}`,
+            name: j.title,
+          })),
+        }}
+      />
       <motion.div className="progress" style={{ scaleX: scrollYProgress }} />
 
       <div style={{ position: "relative", overflow: "hidden" }}>

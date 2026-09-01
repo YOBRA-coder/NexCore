@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { SERVICES } from "../utils/data";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { uploadFileToCloud } from "../utils/fileUpload";
+import { SEO } from "../components/SEO";
 
 export function Contact() {
   const location = useLocation() as { state?: { service?: string; projectName?: string; message?: string } };
@@ -64,6 +65,11 @@ const submit = async (e: any) => {
 
   return (
     <section className="contact-wrap">
+      <SEO
+        title="Contact"
+        description="Get in touch with Yobby Technologies for web, mobile, fintech and AI project inquiries. We reply within 24 hours."
+        path="/contact"
+      />
       <div className="bg-orb orb1" />
       <div className="bg-orb orb2" />
       <motion.div className="progress" style={{ scaleX: scrollYProgress,}}/>
