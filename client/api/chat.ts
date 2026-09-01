@@ -49,22 +49,20 @@ export default async function handler(req: any, res: any) {
       res.status(400).json({ error: "No message provided." });
       return;
     }
-
-    // Google Gemini REST API endpoint utilizing the free 1.5 Flash model
-    // Correct URL structure for Gemini 1.5 Flash
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
     const contents = messages.map((m) => ({
       role: m.role === "assistant" ? "model" : "user",
       parts: [{ text: m.content }]
     }));
 
-    const geminiRes = await fetch(geminiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+const geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent";
+
+const geminiRes = await fetch(geminiUrl, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-goog-api-key": apiKey // Key moves here
+  },
+  body: JSON.stringify({
         contents: contents,
         systemInstruction: {
           parts: [{ text: SYSTEM_PROMPT }]
