@@ -51,10 +51,9 @@ export default async function handler(req: any, res: any) {
     }
 
     // Google Gemini REST API endpoint utilizing the free 1.5 Flash model
-// Replace the old geminiUrl variable line with this:
-const geminiUrl = "https://googleapis.com" + apiKey;
+    // Correct URL structure for Gemini 1.5 Flash
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
-    // Transform roles to match Gemini format ('assistant' becomes 'model')
     const contents = messages.map((m) => ({
       role: m.role === "assistant" ? "model" : "user",
       parts: [{ text: m.content }]
@@ -84,7 +83,7 @@ const geminiUrl = "https://googleapis.com" + apiKey;
     }
 
     const data = await geminiRes.json();
-    
+
     // Extract text safely from Gemini response structure
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
