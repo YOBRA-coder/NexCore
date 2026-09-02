@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Search, Clock } from "lucide-react";
 import { ARTICLES } from "../utils/data";
+import { AdaptiveImage } from "../utils/AdaptiveImage";
 
 export function Articles() {
   const [query, setQuery] = useState("");
@@ -32,11 +33,10 @@ export function Articles() {
   return (
     <div className="articles-page">
       <motion.div className="progress" style={{ scaleX: scrollYProgress }} />
-      {/* BACKGROUND */}
       <div className="articles-bg" />
 
       <div className="articles-container">
-        {/* HERO */}
+        {/* HERO SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,11 +44,9 @@ export function Articles() {
           className="articles-hero"
         >
           <div className="chip">KNOWLEDGE BASE</div>
-
           <h1>
             Build <span className="gtext">Intelligence</span>
           </h1>
-
           <p>
             Engineering deep-dives, system architecture, AI workflows, product thinking, and strategy — straight from the team shipping the work.
           </p>
@@ -75,7 +73,7 @@ export function Articles() {
           </div>
         </motion.div>
 
-        {/* FEATURED */}
+        {/* FEATURED ARTICLES */}
         {featured.length > 0 && (
           <div className="featured-grid">
             <AnimatePresence>
@@ -88,11 +86,18 @@ export function Articles() {
                   exit={{ opacity: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Link to={`/articles/${a.id}`} className="featured-card">
-                    <div className="featured-image" style={{ backgroundImage: `url(${a.image})` }} />
-                    <div className="featured-overlay" />
+                  <Link to={`/articles/${a.id}`} className="featured-card" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+                    <div className="featured-image-container" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+                      <AdaptiveImage 
+                        images={a.images} 
+                        alt={a.title} 
+                        className="featured-image-raw"
+                        aspectRatio="16/9"
+                      />
+                    </div>
+                    <div className="featured-overlay" style={{ zIndex: 1 }} />
 
-                    <div className="featured-content">
+                    <div className="featured-content" style={{ position: 'relative', zIndex: 2 }}>
                       <div className="featured-top">
                         <span className="pill" style={{ background: a.accent + "22", color: a.accent }}>
                           {a.category}
@@ -123,7 +128,7 @@ export function Articles() {
           </div>
         )}
 
-        {/* ARTICLES */}
+        {/* REGULAR ARTICLES GRID */}
         <div className="articles-grid">
           <AnimatePresence>
             {rest.map((a, i) => (
@@ -136,9 +141,14 @@ export function Articles() {
                 transition={{ delay: i * 0.06 }}
               >
                 <Link to={`/articles/${a.id}`} className="article-card" style={{ textDecoration: "none" }}>
-                  <div className="article-thumb" style={{ backgroundImage: `url(${a.image})` }} />
+                  <AdaptiveImage 
+                    images={a.images} 
+                    alt={a.title} 
+                    className="article-thumb-adaptive" 
+                    aspectRatio="16/10"
+                  />
 
-                  <div className="article-body" style={{ textDecoration: "none" }}>
+                  <div className="article-body">
                     <span className="pill" style={{ background: a.accent + "18", color: a.accent }}>
                       {a.category}
                     </span>
@@ -165,7 +175,7 @@ export function Articles() {
         </div>
 
         {noResults && (
-          <div style={{ textAlign: "center", padding: "4rem 0", color: "var(--t3)", fontFamily: "var(--fb)" }}>
+          <div style={{ textAlign: "center", padding: "4rem 0", color: "var(--t3)" }}>
             No articles match "{query}"{cat !== "All" ? ` in ${cat}` : ""}.
           </div>
         )}

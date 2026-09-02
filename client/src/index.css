@@ -2205,6 +2205,21 @@ textarea {
 }
 .article-related-meta{ font-family:var(--fm); font-size:10.5px; color:var(--t3); }
 
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.adaptive-image-element {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* Ensure absolute card containers mask child media correctly */
+.featured-card, .article-card, .article-related-card {
+  isolation: isolate;
+}
+
 @media (max-width:760px){
   .article-related-grid{ grid-template-columns:1fr; }
 }

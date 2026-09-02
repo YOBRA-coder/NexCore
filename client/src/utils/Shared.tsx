@@ -15,7 +15,7 @@ export interface Service {
 export interface Article {
   id: string; title: string; excerpt: string; category: string;
   date: string; readTime: string; featured: boolean; accent: string; image: string; content: string;
-  author?: string; authorRole?: string;
+  author?: string; authorRole?: string; images?: { avif: string; webp: string; fallback: string };
 }
 export interface Job {
   id: string; title: string; department: string; type: string; location: string;
