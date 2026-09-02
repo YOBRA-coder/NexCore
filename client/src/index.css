@@ -1917,11 +1917,12 @@ textarea {
 
 /* Ensure the overall scroll container allows flexible vertical expansion */
 .chat-body {
+  flex: 1; 
   display: flex;
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  max-height: 400px; /* Or whatever height you prefer, use flex-grow if in a container */
+  padding: 16px;
 }
 
 /* Container replacement for display: contents */
@@ -1934,20 +1935,32 @@ textarea {
 /* Essential text wrapping properties */
 .chat-bubble {
   max-width: 85%;
-  height: auto; /* Overrides any accidental static heights */
-  white-space: pre-wrap; /* Keeps spaces/newlines intact but wraps normally */
-  overflow-wrap: break-word; /* Forces exceptionally long strings to wrap */
-  word-break: break-word; /* Backwards compatibility */
-  line-height: 1.4;
+  height: auto;
+  padding: 10px 14px;
+  font-family: var(--fb);
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap; 
+  overflow-wrap: break-word; 
+  word-break: break-word;
 }
 
 /* User bubbles align right, bot bubbles align left */
 .chat-user {
   align-self: flex-end;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: var(--t);
+  border-radius: 10px 10px 2px 10px; /* Aligned with standard 10px site border radius */
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
 }
 
 .chat-bot {
   align-self: flex-start;
+  background: color-mix(in srgb, var(--t) 5%, transparent); /* Matches your exact site input row background fill */
+  border: 1px solid rgba(139, 92, 246, 0.25); /* Unified assistant panel border style token */
+  color: var(--t2);
+  border-radius: 10px 10px 10px 2px; /* Aligned with standard 10px site border radius */
 }
 
 .chat-typing{ display:flex; gap:4px; align-items:center; padding:12px 14px; }
