@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 interface ImageSources {
   avif?: string;
   webp?: string;
