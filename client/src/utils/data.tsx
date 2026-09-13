@@ -209,143 +209,192 @@ const JOBS: Job[] = [
     title: "Senior Full-Stack Engineer",
     department: "Engineering",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Senior",
     accent: "#0ea5e9",
     icon: "🌐",
     posted: "Posted this week",
-    description: "Own end-to-end delivery on client SaaS and internal products — React/TypeScript frontends backed by FastAPI or Node.js services.",
+
+    description:
+      "Lead the design and delivery of production-grade web platforms and SaaS products using modern React, TypeScript, FastAPI, and Node.js technologies.",
+
     responsibilities: [
-      "Ship production features across React + FastAPI/Node stacks",
-      "Design database schemas and REST/WebSocket APIs",
-      "Review PRs and mentor junior engineers",
-      "Work directly with clients during scoping calls"
+      "Design, build, test, and ship production features across React, TypeScript, FastAPI, and Node.js",
+      "Design scalable database schemas and reliable REST and WebSocket APIs",
+      "Own features end-to-end from technical planning through deployment and monitoring",
+      "Review pull requests, improve engineering standards, and mentor junior developers",
+      "Collaborate with product, design, and clients to translate requirements into technical solutions"
     ],
+
     requirements: [
-      "3+ years with React/TypeScript in production",
-      "Solid backend experience (FastAPI, Node.js, or similar)",
-      "Comfortable with PostgreSQL and cloud deployment",
-      "Clear communicator, self-directed"
+      "3+ years of professional experience building production applications with React and TypeScript",
+      "Strong backend development experience with FastAPI, Node.js, or a comparable framework",
+      "Solid understanding of PostgreSQL, API design, authentication, and application security",
+      "Experience deploying and maintaining applications in a cloud environment",
+      "Strong problem-solving, communication, and independent working skills"
     ]
   },
+
   {
     id: "android-flutter-developer",
     title: "Android / Flutter Developer",
     department: "Mobile",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Mid–Senior",
     accent: "#22c55e",
     icon: "📱",
     posted: "Posted this week",
-    description: "Build and ship native Android and cross-platform Flutter apps from MVP through Play Store launch for our clients and our own products.",
+
+    description:
+      "Build reliable, high-quality mobile applications for our clients and internal products, from early MVP development through production release and ongoing improvement.",
+
     responsibilities: [
-      "Build Kotlin/Jetpack Compose and Flutter apps",
-      "Integrate Firebase, REST APIs, and payment SDKs (M-Pesa)",
-      "Publish and maintain apps on the Play Store",
-      "Optimize for offline-first, low-bandwidth environments"
+      "Develop Android applications using Kotlin and modern Jetpack technologies",
+      "Build cross-platform mobile experiences using Flutter and Dart",
+      "Integrate Firebase, REST APIs, authentication, analytics, and mobile payment services",
+      "Prepare, release, and maintain applications for the Google Play Store",
+      "Optimize applications for performance, reliability, offline usage, and low-bandwidth environments"
     ],
+
     requirements: [
-      "2+ years Android (Kotlin) or Flutter experience",
-      "Published at least one app to the Play Store",
-      "Experience with Firebase and REST integrations",
-      "Bonus: M-Pesa or mobile-money integration experience"
+      "2+ years of professional Android development with Kotlin or Flutter development",
+      "Experience building and shipping at least one production mobile application",
+      "Practical experience integrating REST APIs and Firebase services",
+      "Understanding of mobile application architecture, state management, and secure data handling",
+      "Experience with mobile money or payment integrations such as M-Pesa is an advantage"
     ]
   },
+
   {
     id: "quant-trading-systems-engineer",
     title: "Quant / Trading Systems Engineer",
     department: "Fintech",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Senior",
     accent: "#f59e0b",
     icon: "⚡",
     posted: "Posted today",
-    description: "Architect and scale real-time trading bots, algorithmic signal engines, and execution platforms across Forex, Crypto, and Equities markets.",
+
+    description:
+      "Design and engineer real-time quantitative trading infrastructure, algorithmic signal systems, market-data pipelines, and automated execution platforms across global financial markets.",
+
     responsibilities: [
-      "Develop low-latency execution pipelines and quantitative trading strategies",
-      "Integrate exchange WebSocket APIs and brokerage execution interfaces",
-      "Design telemetry, risk-mitigation logic, and portfolio tracking systems",
-      "Implement robust backtesting tools using historical market data frameworks"
+      "Develop real-time trading systems, signal engines, and automated execution pipelines",
+      "Integrate exchange, brokerage, and market-data APIs using REST and WebSocket protocols",
+      "Design risk controls, position management, portfolio monitoring, and trading telemetry",
+      "Build reliable backtesting and simulation systems using historical market data",
+      "Analyze system performance, latency, execution quality, and strategy behaviour",
+      "Develop monitoring and safeguards for automated trading environments"
     ],
+
     requirements: [
-      "3+ years building high-throughput systems using Python, Go, or C++",
-      "Deep understanding of technical indicators, orders, and WebSockets",
-      "Experience with asset management risk profiles and historical data engines",
-      "Strong command of math, statistics, or analytical data patterns"
+      "3+ years of professional software engineering experience with Python, Go, C++, or similar",
+      "Strong understanding of financial markets, order types, market data, and WebSocket systems",
+      "Experience building high-throughput or real-time systems",
+      "Strong mathematical, statistical, analytical, or quantitative problem-solving ability",
+      "Understanding of trading risk management and historical-data analysis",
+      "Experience with algorithmic trading systems is strongly preferred"
     ]
   },
+
   {
     id: "ai-solutions-engineer",
     title: "AI / Machine Learning Solutions Engineer",
     department: "AI & ML",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Mid–Senior",
     accent: "#a855f7",
     icon: "🧠",
     posted: "Posted today",
-    description: "Build smart vertical SaaS systems, custom RAG integrations, and autonomous LLM agents trained on enterprise workflows.",
+
+    description:
+      "Build production AI systems that turn large language models, retrieval systems, and intelligent agents into practical solutions for real-world business workflows.",
+
     responsibilities: [
-      "Deploy and fine-tune open-source LLMs and proprietary model endpoints",
-      "Architect context-aware Retrieval-Augmented Generation (RAG) loops",
-      "Build custom embeddings, vector DB search patterns, and parser text layers",
-      "Deliver AI integrations via reliable FastAPI microservices"
+      "Design and deploy production-grade LLM and generative AI applications",
+      "Build Retrieval-Augmented Generation systems using embeddings and vector search",
+      "Develop intelligent agents capable of executing structured business workflows",
+      "Integrate proprietary and open-source model APIs into scalable backend services",
+      "Design evaluation, observability, safety, and reliability mechanisms for AI systems",
+      "Build AI services and integrations using Python and FastAPI"
     ],
+
     requirements: [
-      "2+ years shipping production-ready NLP or generative AI features",
-      "Hands-on depth with LangChain/LlamaIndex and Vector Databases (Pinecone, PGVector)",
-      "Strong Python chops and understanding of inference token optimization",
-      "Familiarity with model fine-tuning or prompt safety design templates"
+      "2+ years of experience delivering production NLP, machine learning, or generative AI solutions",
+      "Strong Python development skills and experience building backend services",
+      "Hands-on experience with RAG architectures, embeddings, and vector databases",
+      "Experience with frameworks such as LangChain, LlamaIndex, or comparable tooling",
+      "Understanding of LLM inference, token optimization, evaluation, and prompt engineering",
+      "Experience with model fine-tuning, AI agents, or AI safety practices is an advantage"
     ]
   },
+
   {
     id: "cloud-devops-engineer",
     title: "Cloud & DevOps Infrastructure Engineer",
     department: "Operations",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Mid–Senior",
     accent: "#ef4444",
     icon: "☁️",
     posted: "Posted yesterday",
-    description: "Own the cloud infrastructure, CI/CD pipelines, container orchestration, and high-uptime guarantees across all staging and production applications.",
+
+    description:
+      "Own the infrastructure behind our applications by building secure cloud environments, automated deployment pipelines, observability systems, and highly available production platforms.",
+
     responsibilities: [
-      "Provision secure, scalable AWS/GCP infrastructure using Terraform (IaC)",
-      "Build and maintain multi-stage GitHub Actions CI/CD workflows",
-      "Manage isolated Docker workloads and optimize database clusters",
-      "Configure unified uptime tracking, real-time alert logs, and system metrics"
+      "Design and maintain secure, scalable AWS or Google Cloud infrastructure",
+      "Provision infrastructure using Terraform and Infrastructure as Code practices",
+      "Build and maintain CI/CD pipelines using GitHub Actions or comparable tooling",
+      "Containerize and operate production workloads using Docker",
+      "Implement monitoring, logging, alerting, backups, and disaster-recovery practices",
+      "Improve deployment reliability, system performance, security, and availability"
     ],
+
     requirements: [
-      "3+ years managing public cloud architecture (AWS or Google Cloud)",
-      "Strong skills in Docker container networks and shell automation script sets",
-      "Familiarity with relational scaling patterns (PostgreSQL pooling, caching layers)",
-      "Experience targeting zero-downtime microservice deployments"
+      "3+ years of professional experience managing AWS, Google Cloud, or comparable cloud environments",
+      "Strong experience with Docker, Linux, networking, and shell scripting",
+      "Practical Infrastructure as Code experience, preferably Terraform",
+      "Experience designing CI/CD pipelines and automated deployment workflows",
+      "Strong understanding of PostgreSQL, caching, backups, and production databases",
+      "Experience with monitoring, observability, security, and zero-downtime deployments"
     ]
   },
+
   {
     id: "product-ui-ux-designer",
     title: "Product (UI/UX) Designer",
     department: "Design",
     type: "Full-time",
-    location: "Remote · Nakuru, KE",
+    location: "Remote · Kenya",
     level: "Mid-Level",
     accent: "#ec4899",
     icon: "🎨",
     posted: "Posted 3 days ago",
-    description: "Shape intuitive web, mobile app, and fintech dashboard experiences by crafting high-fidelity interactive wireframes and visual UI assets.",
+
+    description:
+      "Design intuitive, accessible, and visually polished digital products across web, mobile, SaaS, and fintech experiences.",
+
     responsibilities: [
-      "Produce comprehensive responsive web application and mobile interface layouts",
-      "Maintain a unified, reusable design system inside Figma asset sheets",
-      "Collaborate directly with frontend engineers during UI design handoffs",
-      "Build high-fidelity prototypes to rapidly validate new features"
+      "Design responsive web and mobile interfaces from concept through final delivery",
+      "Create high-fidelity prototypes and interactive product experiences in Figma",
+      "Develop and maintain reusable design-system components and visual patterns",
+      "Work closely with product managers and engineers throughout the development lifecycle",
+      "Translate complex workflows and business requirements into simple user experiences",
+      "Conduct design reviews and continuously improve usability and visual consistency"
     ],
+
     requirements: [
-      "2+ years experience detailing application interface design paradigms",
-      "A standout digital visual asset portfolio showing functional SaaS UI workflows",
-      "Advanced control of typography, data layout systems, and Figma patterns",
-      "Bonus: Light understanding of HTML/CSS capabilities or Tailwind structure"
+      "2+ years of professional product or UI/UX design experience",
+      "Strong portfolio demonstrating real-world SaaS, web, mobile, or fintech products",
+      "Advanced proficiency with Figma and modern interface-design workflows",
+      "Strong understanding of typography, spacing, responsive layouts, and visual hierarchy",
+      "Ability to communicate design decisions clearly and collaborate with engineers",
+      "Working knowledge of HTML/CSS or Tailwind CSS is an advantage"
     ]
   }
 ];
