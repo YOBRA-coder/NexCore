@@ -204,9 +204,152 @@ Architecting production mobile payment systems is less about tracking the optima
 ];
 
 const JOBS: Job[] = [
-  { id: "senior-fullstack-engineer", title: "Senior Full-Stack Engineer", department: "Engineering", type: "Full-time", location: "Remote · Nakuru, KE", level: "Senior", accent: "#0ea5e9", icon: "🌐", posted: "Posted this week", description: "Own end-to-end delivery on client SaaS and internal products — React/TypeScript frontends backed by FastAPI or Node.js services.", responsibilities: ["Ship production features across React + FastAPI/Node stacks", "Design database schemas and REST/WebSocket APIs", "Review PRs and mentor junior engineers", "Work directly with clients during scoping calls"], requirements: ["3+ years with React/TypeScript in production", "Solid backend experience (FastAPI, Node.js, or similar)", "Comfortable with PostgreSQL and cloud deployment", "Clear communicator, self-directed"] },
-  { id: "android-flutter-developer", title: "Android / Flutter Developer", department: "Mobile", type: "Full-time", location: "Remote · Nakuru, KE", level: "Mid–Senior", accent: "#22c55e", icon: "📱", posted: "Posted this week", description: "Build and ship native Android and cross-platform Flutter apps from MVP through Play Store launch for our clients and our own products.", responsibilities: ["Build Kotlin/Jetpack Compose and Flutter apps", "Integrate Firebase, REST APIs, and payment SDKs (M-Pesa)", "Publish and maintain apps on the Play Store", "Optimize for offline-first, low-bandwidth environments"], requirements: ["2+ years Android (Kotlin) or Flutter experience", "Published at least one app to the Play Store", "Experience with Firebase and REST integrations", "Bonus: M-Pesa or mobile-money integration experience"] }
+  {
+    id: "senior-fullstack-engineer",
+    title: "Senior Full-Stack Engineer",
+    department: "Engineering",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Senior",
+    accent: "#0ea5e9",
+    icon: "🌐",
+    posted: "Posted this week",
+    description: "Own end-to-end delivery on client SaaS and internal products — React/TypeScript frontends backed by FastAPI or Node.js services.",
+    responsibilities: [
+      "Ship production features across React + FastAPI/Node stacks",
+      "Design database schemas and REST/WebSocket APIs",
+      "Review PRs and mentor junior engineers",
+      "Work directly with clients during scoping calls"
+    ],
+    requirements: [
+      "3+ years with React/TypeScript in production",
+      "Solid backend experience (FastAPI, Node.js, or similar)",
+      "Comfortable with PostgreSQL and cloud deployment",
+      "Clear communicator, self-directed"
+    ]
+  },
+  {
+    id: "android-flutter-developer",
+    title: "Android / Flutter Developer",
+    department: "Mobile",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Mid–Senior",
+    accent: "#22c55e",
+    icon: "📱",
+    posted: "Posted this week",
+    description: "Build and ship native Android and cross-platform Flutter apps from MVP through Play Store launch for our clients and our own products.",
+    responsibilities: [
+      "Build Kotlin/Jetpack Compose and Flutter apps",
+      "Integrate Firebase, REST APIs, and payment SDKs (M-Pesa)",
+      "Publish and maintain apps on the Play Store",
+      "Optimize for offline-first, low-bandwidth environments"
+    ],
+    requirements: [
+      "2+ years Android (Kotlin) or Flutter experience",
+      "Published at least one app to the Play Store",
+      "Experience with Firebase and REST integrations",
+      "Bonus: M-Pesa or mobile-money integration experience"
+    ]
+  },
+  {
+    id: "quant-trading-systems-engineer",
+    title: "Quant / Trading Systems Engineer",
+    department: "Fintech",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Senior",
+    accent: "#f59e0b",
+    icon: "⚡",
+    posted: "Posted today",
+    description: "Architect and scale real-time trading bots, algorithmic signal engines, and execution platforms across Forex, Crypto, and Equities markets.",
+    responsibilities: [
+      "Develop low-latency execution pipelines and quantitative trading strategies",
+      "Integrate exchange WebSocket APIs and brokerage execution interfaces",
+      "Design telemetry, risk-mitigation logic, and portfolio tracking systems",
+      "Implement robust backtesting tools using historical market data frameworks"
+    ],
+    requirements: [
+      "3+ years building high-throughput systems using Python, Go, or C++",
+      "Deep understanding of technical indicators, orders, and WebSockets",
+      "Experience with asset management risk profiles and historical data engines",
+      "Strong command of math, statistics, or analytical data patterns"
+    ]
+  },
+  {
+    id: "ai-solutions-engineer",
+    title: "AI / Machine Learning Solutions Engineer",
+    department: "AI & ML",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Mid–Senior",
+    accent: "#a855f7",
+    icon: "🧠",
+    posted: "Posted today",
+    description: "Build smart vertical SaaS systems, custom RAG integrations, and autonomous LLM agents trained on enterprise workflows.",
+    responsibilities: [
+      "Deploy and fine-tune open-source LLMs and proprietary model endpoints",
+      "Architect context-aware Retrieval-Augmented Generation (RAG) loops",
+      "Build custom embeddings, vector DB search patterns, and parser text layers",
+      "Deliver AI integrations via reliable FastAPI microservices"
+    ],
+    requirements: [
+      "2+ years shipping production-ready NLP or generative AI features",
+      "Hands-on depth with LangChain/LlamaIndex and Vector Databases (Pinecone, PGVector)",
+      "Strong Python chops and understanding of inference token optimization",
+      "Familiarity with model fine-tuning or prompt safety design templates"
+    ]
+  },
+  {
+    id: "cloud-devops-engineer",
+    title: "Cloud & DevOps Infrastructure Engineer",
+    department: "Operations",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Mid–Senior",
+    accent: "#ef4444",
+    icon: "☁️",
+    posted: "Posted yesterday",
+    description: "Own the cloud infrastructure, CI/CD pipelines, container orchestration, and high-uptime guarantees across all staging and production applications.",
+    responsibilities: [
+      "Provision secure, scalable AWS/GCP infrastructure using Terraform (IaC)",
+      "Build and maintain multi-stage GitHub Actions CI/CD workflows",
+      "Manage isolated Docker workloads and optimize database clusters",
+      "Configure unified uptime tracking, real-time alert logs, and system metrics"
+    ],
+    requirements: [
+      "3+ years managing public cloud architecture (AWS or Google Cloud)",
+      "Strong skills in Docker container networks and shell automation script sets",
+      "Familiarity with relational scaling patterns (PostgreSQL pooling, caching layers)",
+      "Experience targeting zero-downtime microservice deployments"
+    ]
+  },
+  {
+    id: "product-ui-ux-designer",
+    title: "Product (UI/UX) Designer",
+    department: "Design",
+    type: "Full-time",
+    location: "Remote · Nakuru, KE",
+    level: "Mid-Level",
+    accent: "#ec4899",
+    icon: "🎨",
+    posted: "Posted 3 days ago",
+    description: "Shape intuitive web, mobile app, and fintech dashboard experiences by crafting high-fidelity interactive wireframes and visual UI assets.",
+    responsibilities: [
+      "Produce comprehensive responsive web application and mobile interface layouts",
+      "Maintain a unified, reusable design system inside Figma asset sheets",
+      "Collaborate directly with frontend engineers during UI design handoffs",
+      "Build high-fidelity prototypes to rapidly validate new features"
+    ],
+    requirements: [
+      "2+ years experience detailing application interface design paradigms",
+      "A standout digital visual asset portfolio showing functional SaaS UI workflows",
+      "Advanced control of typography, data layout systems, and Figma patterns",
+      "Bonus: Light understanding of HTML/CSS capabilities or Tailwind structure"
+    ]
+  }
 ];
+
 
 const STACK = ["React · TypeScript", "Python · FastAPI", "Node.js · Express", "Kotlin · Flutter", "TensorFlow · PyTorch", "PostgreSQL · Redis", "AWS · GCP · Docker", "Figma · After Effects", "Claude API · OpenAI", "WebSocket · REST", "M-Pesa · Stripe", "Binance · Twelve Data"];
 
