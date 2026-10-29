@@ -254,7 +254,7 @@ export function Home() {
             <button onClick={() => navigate("/products")} className="btn-g">All Platforms →</button>
           </div>
           <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1.25rem" }} className="g3">
-            {PROJECTS.slice(0,3).map(p => <PCard key={p.id} project={p} />)}
+            {PROJECTS.slice(0,6).map(p => <PCard key={p.id} project={p} />)}
           </div>
         </div>
       </section>
